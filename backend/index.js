@@ -39,6 +39,7 @@ class Radio {
         this.stream_process = null;
         this.station = null;
         this.power = false;
+        this.presets = [null, null, null, null, null, null];
     }
 
     togglePower() {
@@ -51,6 +52,8 @@ class Radio {
             this.power = true;
             if (this.station !== null) {
                 this.stream_process = playStream(this.station);
+            } else if (this.presets[0] !== null) {
+                this.stream_process = playStream(this.presets[0]);
             }
         }
     }
@@ -62,6 +65,16 @@ class Radio {
                 this.stream_process.kill();
             }
             this.stream_process = playStream(this.station);
+        }
+    }
+
+    tunePreset(idx) {
+        this.tune(this.presets[idx]);
+    }
+
+    setPreset(idx) {
+        if (this.station !== null) {
+            this.presets[idx] = this.station;
         }
     }
 }
@@ -82,21 +95,38 @@ app.post('/power', (req, res) => {
 // Tune radio to station or preset
 // {"preset": number} or {"name": string, "freq": string, "url": string}
 app.post('/tune', (req, res) => {
-    let station = Station.fromObj(req.body);
-    radio.tune(station);
+    if ('preset' in req.body) {
+        radio.tunePreset(req.body['preset']);
+    } else {
+        let station = Station.fromObj(req.body);
+        radio.tune(station);
+    }
+    // TODO: return whether spawning the stream succeeded
     res.json(true);
 });
 
-// GET /preset/:id
+// GET /playing
 // Get playing station info
 // {"name": string, "freq": string, "url": string}
-app.get('/preset/:id', (req, res) => {
+app.get('/playing', (req, res) => {
+    return res.json(radio.station.toObj());
+});
 
+// GET /preset/:id
+// Get station info for preset
+// {"name": string, "freq": string, "url": string}
+app.get('/preset/:id', (req, res) => {
+    // TODO: valid preset is 1-6
+    return res.json(radio.presets[req.params['id']])
 });
 
 // PUT /preset/:id
 // Save playing station to preset
 // {}
+app.put('/preset/:id', (req, res) => {
+    radio.setPreset(req.params['id']);
+    return res.json({});
+});
 
 // Spawn stream process and return PID
 const BINARY_PATHS = {
