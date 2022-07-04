@@ -104,6 +104,10 @@ const radio = new Radio();
 const app = express();
 app.use(express.json());
 
+function logRequest(path, req) {
+    console.log(`${path} ${Object.keys(req.body).map(key => `${key}=${req.body[key]}`)}`);
+}
+
 // POST /power
 // Change power state
 // Request: {}
@@ -120,6 +124,7 @@ app.post('/power', (req, res) => {
 // Note: Does not guarantee radio is actually playing the station,
 // if the URL is invalid or there is an issue with VLC, this will still return success.
 app.post('/tune', (req, res) => {
+    logRequest('/tune', req);
     if ('preset' in req.body) {
         let preset = req.body['preset'];
         if (typeof preset !== 'number') {
