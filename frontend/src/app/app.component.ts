@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RadioService } from './radio.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'car-radio';
+  constructor(private radio: RadioService) {}
+
+  onPowerClick() {
+    console.log("toggle power");
+    this.radio.togglePower().subscribe(result => console.log(result));
+  }
 }

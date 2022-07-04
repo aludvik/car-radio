@@ -6,6 +6,7 @@ import { spawn } from 'child_process';
 
 const public_port = 8080;
 
+// TODO: Use non-blocking log statements
 // TODO: persist presets, playing station on restarts
 // const state_path = "./state.json";
 
@@ -113,6 +114,7 @@ function logRequest(path, req) {
 // Request: {}
 // Response: {"power": bool} # current power state
 app.post('/power', (req, res) => {
+    logRequest('/power', req);
     radio.togglePower();
     res.json(radio.power);
 });
