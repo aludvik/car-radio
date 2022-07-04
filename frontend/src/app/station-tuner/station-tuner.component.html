@@ -1,0 +1,17 @@
+<div class="station-drawer">
+    <form>
+        <div>
+            <label for="name">Station Name: </label>
+            <input type="text" name="name" [(ngModel)]="name" required>
+        </div>
+        <div>
+            <label for="freq">Frequency: </label>
+            <input type="text" name="freq" [(ngModel)]="freq" required>
+        </div>
+        <div>
+            <label for="stream">Stream URL: </label>
+            <input type="text" name="url" [(ngModel)]="url" required>
+        </div>
+        <button type="button" (click)="onSubmit()">Tune</button>
+    </form>
+</div>

@@ -23,32 +23,10 @@
         <app-preset-button preset=4></app-preset-button>
         <app-preset-button preset=5></app-preset-button>
         <app-preset-button preset=6></app-preset-button>
-        <!-- <button class="preset" type="button">1</button>
-        <button class="preset" type="button">2</button>
-        <button class="preset" type="button">3</button>
-        <button class="preset" type="button">4</button>
-        <button class="preset" type="button">5</button>
-        <button class="preset" type="button">6</button> -->
       </div>
     </div>
   </div>
   <div class="station-drawer-container">
-    <div class="station-drawer">
-      <form>
-        <div class="form-group">
-          <label for="name">Station Name: </label>
-          <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-          <label for="freq">Frequency: </label>
-          <input type="text" id="freq" required>
-        </div>
-        <div class="form-group">
-          <label for="stream">Stream URL: </label>
-          <input type="text" id="stream" required>
-        </div>
-        <button type="submit">Tune</button>
-      </form>
-    </div>
+    <app-station-tuner></app-station-tuner>
   </div>
 </div>
