@@ -13,20 +13,26 @@ export class PresetButtonComponent {
   constructor() { }
 
   onMouseDown() {
-    this.timeoutId = window.setTimeout(() => {this.setPreset()}, 1000);
+    this.timeoutId = window.setTimeout(() => {
+      this.longPress();
+      this.timeoutId = 0;
+    }, 1000);
   }
 
   onMouseUp() {
-    if (this.timeoutId === 0) { // long press, do nothing
-      return;
-    } else { // short press
-      window.clearTimeout(this.timeoutId);
-      console.log(`Preset ${this.preset} short press`);
+    if (this.timeoutId === 0) {
+      return; // long press fired, do nothing
     }
+    // short press firing, prevent long press
+    window.clearTimeout(this.timeoutId);
+    this.shortPress();
   }
 
-  setPreset() {
+  shortPress() {
+    console.log(`Preset ${this.preset} short press`);
+  }
+
+  longPress() {
     console.log(`Preset ${this.preset} long press`);
-    this.timeoutId = 0;
   }
 }
