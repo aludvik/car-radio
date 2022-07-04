@@ -67,7 +67,8 @@
               "browserTarget": "car-radio:build:production"
             },
             "development": {
-              "browserTarget": "car-radio:build:development"
+              "browserTarget": "car-radio:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
