@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PresetButtonComponent } from './preset-button/preset-button.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PresetButtonComponent
   ],
   imports: [
     BrowserModule,
