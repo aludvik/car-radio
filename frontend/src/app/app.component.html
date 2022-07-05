@@ -16,16 +16,16 @@
         </div>
       </div>
       <div class="radio-presets">
-        <app-preset-button preset=1></app-preset-button>
-        <app-preset-button preset=2></app-preset-button>
-        <app-preset-button preset=3></app-preset-button>
-        <app-preset-button preset=4></app-preset-button>
-        <app-preset-button preset=5></app-preset-button>
-        <app-preset-button preset=6></app-preset-button>
+        <app-preset-button preset=1 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
+        <app-preset-button preset=2 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
+        <app-preset-button preset=3 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
+        <app-preset-button preset=4 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
+        <app-preset-button preset=5 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
+        <app-preset-button preset=6 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
       </div>
     </div>
   </div>
   <div class="station-drawer-container">
-    <app-station-tuner [visible]="drawerVisible"></app-station-tuner>
+    <app-station-tuner [station]="presetStation" [visible]="drawerVisible"></app-station-tuner>
   </div>
 </div>

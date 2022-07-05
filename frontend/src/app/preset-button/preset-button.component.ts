@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RadioService } from '../radio.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { RadioService } from '../radio.service';
 export class PresetButtonComponent {
 
   @Input() preset: string = "";
+  @Output() clickShort = new EventEmitter<number>();
+  @Output() clickLong = new EventEmitter<number>();
   timeoutId: number = 0;
 
   constructor(private radio: RadioService) { }
@@ -31,12 +33,11 @@ export class PresetButtonComponent {
 
   shortPress() {
     console.log(`Preset ${this.preset} short press`);
-    this.radio.tunePreset(Number(this.preset)).subscribe(result => console.log(result));
+    this.clickShort.emit(Number(this.preset));
   }
 
   longPress() {
     console.log(`Preset ${this.preset} long press`);
-    // TODO: Log station preset saved
-    this.radio.setPreset(Number(this.preset)).subscribe(result => console.log(result));
+    this.clickLong.emit(Number(this.preset));
   }
 }

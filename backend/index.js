@@ -166,7 +166,7 @@ app.post('/power', (req, res) => {
 // POST /tune
 // Tune radio to station or preset
 // Request: {"preset": number} or {"name": string, "freq": string, "url": string}
-// Response: {"valid": bool, "msg": string} # if invalid station or preset, return valid=false and reason in msg
+// Response: {"valid": bool, "msg": string, "station": Station?} # if invalid station or preset, return valid=false and reason in msg
 // Note: Does not guarantee radio is actually playing the station,
 // if the URL is invalid or there is an issue with VLC, this will still return success.
 app.post('/tune', (req, res) => {
@@ -181,7 +181,7 @@ app.post('/tune', (req, res) => {
         }
         let result = radio.tunePreset(preset);
         persistRadio();
-        return res.json({'valid': result});
+        return res.json({'valid': true, 'station': result});
     } else {
         if (!('name' in req.body)) {
             return res.json({'valid': false, 'msg': 'Station missing name'});
@@ -195,7 +195,7 @@ app.post('/tune', (req, res) => {
         let station = Station.fromObj(req.body);
         let result = radio.tune(station);
         persistRadio();
-        res.json({'valid': result});
+        res.json({'valid': true, 'station': result});
     }
 });
 
@@ -216,18 +216,6 @@ app.get('/status', (req, res) => {
         response['msg'] = radio.error;
     }
     return res.json(response);
-});
-
-// GET /preset/:id
-// Get station info for preset
-// Response: null if no preset or {"name": string, "freq": string, "url": string}
-app.get('/preset/:id', (req, res) => {
-    let id = req.params['id'];
-    logRequest(`GET /preset/${id}`);
-    if (!(typeof id === 'number') || id < 1 || id > 6) {
-        return res.json(null);
-    }
-    return res.json(radio.presets[id]);
 });
 
 // PUT /preset/:id

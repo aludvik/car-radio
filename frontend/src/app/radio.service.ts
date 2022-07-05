@@ -45,7 +45,7 @@ export class RadioService {
     return this.post('tune', station);
   }
 
-  tunePreset(idx: number): Observable<Object> {
+  tunePreset(idx: number): Observable<{valid: boolean, msg?: string, station?: Station}> {
     return this.post('tune', {'preset': idx});
   }
 

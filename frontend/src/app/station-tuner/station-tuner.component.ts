@@ -26,7 +26,7 @@ import { Station } from '../station';
 })
 export class StationTunerComponent {
 
-  station: Station = {
+  @Input() station: Station = {
     name: "",
     freq: "",
     url: ""
