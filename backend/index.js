@@ -72,20 +72,20 @@ class Radio {
             }
             this.stream_process = playStream(this.station);
         }
+        return this.station;
     }
 
     tunePreset(idx) {
         if (idx < 1 || idx > 6) {
             console.log('tunePreset: out of range');
-            return false;
+            return null;
         }
         let station = this.presets[idx - 1];
         if (station === null) {
             console.log('tunePreset: no station playing');
-            return false;
+            return null;
         }
-        this.tune(station);
-        return true;
+        return this.tune(station);
     }
 
     setPreset(idx) {
