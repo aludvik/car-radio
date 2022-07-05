@@ -17,12 +17,12 @@
         </div>
       </div>
       <div class="radio-presets">
-        <app-preset-button preset=1 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
-        <app-preset-button preset=2 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
-        <app-preset-button preset=3 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
-        <app-preset-button preset=4 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
-        <app-preset-button preset=5 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
-        <app-preset-button preset=6 (clickShort)="tunePreset($event)" (clickLong)="setPreset($event)"></app-preset-button>
+        <app-preset-button
+          *ngFor="let preset of [1, 2, 3, 4, 5, 6]"
+          preset="{{ preset }}"
+          (clickShort)="tunePreset($event)"
+          (clickLong)="setPreset($event)"
+        ></app-preset-button>
       </div>
     </div>
   </div>
