@@ -51,6 +51,7 @@ div.radio-presets {
 div.station-drawer-container {
     display: flex;
     justify-content: center;
+    z-index: -1;
 }
 
 * {

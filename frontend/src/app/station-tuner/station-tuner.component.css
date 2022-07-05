@@ -6,4 +6,7 @@ div.station-drawer {
     border-style: solid;
     border-color: rgb(146, 146, 146);
     border-width: 0px 2px 2px 2px;
+    position: relative;
+    top: -120px;
+    /* transform: translateY(-120px); */
 }
