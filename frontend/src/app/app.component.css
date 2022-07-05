@@ -10,6 +10,7 @@ div.radio-container {
 div.radio {
     background-color: rgb(146, 146, 146);
     border-radius: 8px;
+    z-index: 1;
 }
 
 div.radio-top-row {
@@ -51,7 +52,6 @@ div.radio-presets {
 div.station-drawer-container {
     display: flex;
     justify-content: center;
-    z-index: -1;
 }
 
 * {
