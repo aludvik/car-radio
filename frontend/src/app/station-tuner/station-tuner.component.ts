@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RadioService } from '../radio.service';
+import { Station } from '../station';
 
 @Component({
   selector: 'app-station-tuner',
@@ -8,18 +9,22 @@ import { RadioService } from '../radio.service';
 })
 export class StationTunerComponent {
 
-  name: string = "";
-  freq: string = "";
-  url: string = "";
+  station: Station = {
+    name: "",
+    freq: "",
+    url: ""
+  };
 
   constructor(private radio: RadioService) { }
 
   onSubmit() {
-    console.log(`Submit ${this.name} ${this.freq} ${this.url}`);
-    this.radio.tune(this.name, this.freq, this.url).subscribe(result => console.log(result));
-    this.name = "";
-    this.freq = "";
-    this.url = "";
+    console.log(`Submit ${this.station.name} ${this.station.freq} ${this.station.url}`);
+    this.radio.tune(this.station).subscribe(result => console.log(result));
+    this.station = {
+      name: "",
+      freq: "",
+      url: ""
+    };
   }
 
 }

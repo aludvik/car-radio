@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { Station } from './station';
+import { Status } from './status';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,19 +14,30 @@ export class RadioService {
 
   constructor(private http: HttpClient) { }
 
-  post(path: string, body?: object) {
-    return this.http.post(
+  get<T>(path: string): Observable<T> {
+    return this.http.get<T>(
+      `${this.apiUrl}/${path}`,
+      {'headers': {'Content-Type': 'application/json'}}
+    );
+  }
+
+  post<T>(path: string, body?: object): Observable<T> {
+    return this.http.post<T>(
       `${this.apiUrl}/${path}`,
       body,
       {'headers': {'Content-Type': 'application/json'}}
     );
   }
 
-  togglePower() {
+  togglePower(): Observable<Object> {
     return this.post('power', {});
   }
 
-  tune(name: string, freq: string, url: string) {
-    return this.post('tune', {'name': name, 'freq': freq, 'url': url});
+  tune(station: Station): Observable<Object> {
+    return this.post('tune', station);
+  }
+
+  status(): Observable<Status> {
+    return this.get<Status>('status');
   }
 }

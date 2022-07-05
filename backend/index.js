@@ -158,7 +158,8 @@ app.post('/tune', (req, res) => {
 //    "station": null | {"name": string, "freq": string, "url": string}, # if status=playing, station info
 //    "msg": null | string, # if status=error, set to the error message
 // }
-app.get('/playing', (req, res) => {
+app.get('/status', (req, res) => {
+    logRequest('status', req);
     let status = radio.status();
     let response = {'status': status};
     if (status === 'playing') {

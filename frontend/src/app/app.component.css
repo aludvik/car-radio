@@ -17,25 +17,8 @@ div.radio-top-row {
     margin: 10px;
 }
 
-div.radio-display {
-    background-color: rgb(165, 246, 106);
-    color: rgb(48, 111, 29);
-    display: flex;
+div.radio-display-wrapper {
     flex: 1;
-    margin: 3px;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-div.radio-display > div {
-    font-size: 1.5em;
-}
-
-div#station-name {
-    flex: 1;
-}
-div#station-freq {
-    text-align: right;
 }
 
 div.knob-container {

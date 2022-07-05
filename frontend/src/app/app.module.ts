@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PresetButtonComponent } from './preset-button/preset-button.component';
 import { StationTunerComponent } from './station-tuner/station-tuner.component';
+import { DisplayComponent } from './display/display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PresetButtonComponent,
-    StationTunerComponent
+    StationTunerComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,
