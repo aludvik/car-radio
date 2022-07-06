@@ -134,7 +134,7 @@ function persistRadio() {
 // Spawn stream process and return PID
 const BINARY_PATHS = {
     'darwin': '/Applications/VLC.app/Contents/MacOS/VLC',
-    'linux': '',
+    'linux': '/usr/bin/cvlc',
 };
 const BINARY_PATH = BINARY_PATHS[os.platform()];
 function playStream(station) {
